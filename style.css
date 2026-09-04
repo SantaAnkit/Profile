@@ -58,8 +58,8 @@ a:focus-visible {
 .sidebar { position: sticky; top: 56px; }
 
 .portrait {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   border-radius: 6px;
   object-fit: cover;
   display: block;
