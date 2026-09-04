@@ -11,10 +11,7 @@ ICONS = {
 
 PAGES = [
     ("index",        "Home",                       "index.html"),
-    ("research",      "Research interests",         "research.html"),
     ("publications",  "Publications & Achievements", "publications.html"),
-    ("teaching",       "Teaching",                   "teaching.html"),
-    ("education",      "Education",                  "education.html"),
     ("activities",     "Activities",                 "activities.html"),
 ]
 
@@ -31,7 +28,7 @@ def sidebar(active_key):
 
     <div class="social-icons">
       <a class="icon-btn" href="mailto:142214001@smail.iitpkd.ac.in" aria-label="Email" title="Email">{ICONS['mail']}</a>
-      <a class="icon-btn" href="CV.pdf" aria-label="CV" title="CV">{ICONS['file']}</a>
+      <a class="icon-btn icon-btn-label" href="CV.pdf" aria-label="CV" title="CV">{ICONS['file']}<span>CV</span></a>
       <a class="icon-btn" href="https://scholar.google.com/citations?user=SnmEbEMAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar" title="Google Scholar">{ICONS['scholar']}</a>
       <a class="icon-btn" href="https://github.com/santaankit" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">{ICONS['github']}</a>
       <a class="icon-btn" href="https://www.linkedin.com/in/ankit-santa-909a9b238/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">{ICONS['linkedin']}</a>
@@ -71,26 +68,44 @@ def page(active_key, title, content, extra_class=""):
 </html>
 """
 
-# ---------------- HOME ----------------
-home_content = """    <section class="hero">
-      <div class="hero-grid">
-        <img src="Images/DSC_0105.jpg" alt="" />
-        <img src="Images/IMG_20260429_122300.jpg" alt="" />
-        <img src="Images/IMG_0455.JPG" alt="" />
-        <img src="Images/_SON8055.JPG" alt="" />
-      </div>
-    </section>
+# ---------------- HOME (bio + research interests + education + teaching) ----------------
+edu_entries = [
+    ("2022 — present", "PhD in Data Science", "Indian Institute of Technology Palakkad"),
+    ("2021 — 2022", "M.Phil. in Mathematics", "Himachal Pradesh University, Shimla, Himachal Pradesh"),
+    ("2018 — 2020", "M.Sc. in Mathematics", "Himachal Pradesh University, Shimla, Himachal Pradesh"),
+    ("2015 — 2018", "B.Sc. Hons. in Mathematics", "Government Degree College Sanjauli, Shimla, Himachal Pradesh"),
+]
+edu_items = "\n\n".join(f"""      <div class="timeline-item">
+        <p class="timeline-meta">{term}</p>
+        <h3 class="timeline-title">{degree}</h3>
+        <p class="timeline-org">{org}</p>
+      </div>""" for term, degree, org in edu_entries)
 
-    <section id="bio" class="section first">
+teaching_entries = [
+    ("Fall 2023", "Optimization (DS-2010)", "Assisted with tutorials, student queries, assignments, and course activities."),
+    ("Spring 2024", "Responsible Artificial Intelligence (DS-5604)", "Assisted students with course concepts, assignments, and academic activities."),
+    ("Fall 2024", "Introduction to Machine Learning (DS-3010)", "Assisted students with machine learning concepts, assignments, and course activities."),
+    ("Spring 2025", "Introduction to Deep Learning (DS-3040)", "Assisted students with deep learning concepts, assignments, and course activities."),
+    ("Fall 2025", "Introduction to Machine Learning (DS-3010)", "Assisted students with machine learning concepts, assignments, and course activities."),
+    ("Spring 2026", "Deep Learning (DS-5007)", "Assisted students with deep learning concepts, assignments, and course activities."),
+    ("Fall 2026", "Data Structures and Algorithms for Data Science (DS-2030)", "Assisting students with data structures, algorithms, assignments, and course activities in Python."),
+]
+teaching_items = "\n\n".join(f"""      <div class="timeline-item">
+        <p class="timeline-meta">{term}</p>
+        <h3 class="timeline-title">Teaching Assistant — {course}</h3>
+        <p class="timeline-org">Department of Data Science, IIT Palakkad</p>
+        <p>{desc}</p>
+      </div>""" for term, course, desc in teaching_entries)
+
+home_content = f"""    <section id="bio" class="section first">
       <h2>Hello!</h2>
       <p>
         I'm a PhD research student at IIT Palakkad, working in the area of bioinformatics and
         computational drug discovery.
       </p>
-    </section>"""
+    </section>
 
-# ---------------- RESEARCH ----------------
-research_content = """    <section id="research" class="section first">
+    <section id="research" class="section">
       <h2>Research interests</h2>
       <p>
         My research focuses on using 3D molecular structures to develop machine learning models
@@ -103,6 +118,16 @@ research_content = """    <section id="research" class="section first">
         <li>XAI</li>
         <li>Graph Machine Learning</li>
       </ul>
+    </section>
+
+    <section id="education" class="section">
+      <h2>Education</h2>
+{edu_items}
+    </section>
+
+    <section id="teaching" class="section">
+      <h2>Teaching</h2>
+{teaching_items}
     </section>"""
 
 # ---------------- PUBLICATIONS & ACHIEVEMENTS ----------------
@@ -126,50 +151,24 @@ pub_content = """    <section id="publications" class="section first">
       <h2>Achievements</h2>
 
       <div class="timeline-item">
+        <p class="timeline-meta">Mar 2021 — Mar 2022</p>
+        <h3 class="timeline-title">HPU–JRF</h3>
+        <p class="timeline-org">A fellowship awarded by Himachal Pradesh University for a period of one year.</p>
+      </div>
+
+      <div class="timeline-item">
+        <p class="timeline-meta">July 20 – July 24, 2025</p>
+        <h3 class="timeline-title">ISMB/ECCB 2025 Conference Fellowship</h3>
+        <p class="timeline-org">Selected for the ISMB/ECCB 2025 Conference Fellowship and awarded funding of $1,500 USD, as well as a discounted registration.</p>
+      </div>
+
+      <div class="timeline-item">
         <p class="timeline-meta">2026</p>
         <h3 class="timeline-title">Cricket General Championship — IIT Palakkad</h3>
         <p class="timeline-org">Won the Cricket General Championship representing the institute.</p>
       </div>
 
-      <p class="hint">Add more awards, honours, or championships here — duplicate the block above in publications.html.</p>
-    </section>"""
-
-# ---------------- TEACHING ----------------
-teaching_entries = [
-    ("Fall 2023", "Optimization (DS-2010)", "Assisted with tutorials, student queries, assignments, and course activities."),
-    ("Spring 2024", "Responsible Artificial Intelligence (DS-5604)", "Assisted students with course concepts, assignments, and academic activities."),
-    ("Fall 2024", "Introduction to Machine Learning (DS-3010)", "Assisted students with machine learning concepts, assignments, and course activities."),
-    ("Spring 2025", "Introduction to Deep Learning (DS-3040)", "Assisted students with deep learning concepts, assignments, and course activities."),
-    ("Fall 2025", "Introduction to Machine Learning (DS-3010)", "Assisted students with machine learning concepts, assignments, and course activities."),
-    ("Spring 2026", "Deep Learning (DS-5007)", "Assisted students with deep learning concepts, assignments, and course activities."),
-    ("Fall 2026", "Data Structures and Algorithms for Data Science (DS-2030)", "Assisting students with data structures, algorithms, assignments, and course activities in Python."),
-]
-teaching_items = "\n\n".join(f"""      <div class="timeline-item">
-        <p class="timeline-meta">{term}</p>
-        <h3 class="timeline-title">Teaching Assistant — {course}</h3>
-        <p class="timeline-org">Department of Data Science, IIT Palakkad</p>
-        <p>{desc}</p>
-      </div>""" for term, course, desc in teaching_entries)
-teaching_content = f"""    <section id="teaching" class="section first">
-      <h2>Teaching</h2>
-{teaching_items}
-    </section>"""
-
-# ---------------- EDUCATION ----------------
-edu_entries = [
-    ("2022 — present", "PhD in Data Science", "Indian Institute of Technology Palakkad"),
-    ("2021 — 2022", "M.Phil. in Mathematics", "Himachal Pradesh University, Shimla, Himachal Pradesh"),
-    ("2018 — 2020", "M.Sc. in Mathematics", "Himachal Pradesh University, Shimla, Himachal Pradesh"),
-    ("2015 — 2018", "B.Sc. Hons. in Mathematics", "Government Degree College Sanjauli, Shimla, Himachal Pradesh"),
-]
-edu_items = "\n\n".join(f"""      <div class="timeline-item">
-        <p class="timeline-meta">{term}</p>
-        <h3 class="timeline-title">{degree}</h3>
-        <p class="timeline-org">{org}</p>
-      </div>""" for term, degree, org in edu_entries)
-education_content = f"""    <section id="education" class="section first">
-      <h2>Education</h2>
-{edu_items}
+      <p class="hint">Add more awards, honours, or fellowships here — duplicate the block above in publications.html.</p>
     </section>"""
 
 # ---------------- ACTIVITIES ----------------
@@ -199,10 +198,7 @@ activities_content = """    <section id="activities" class="section first">
 
 files = {
     "index.html": page("index", "Home", home_content),
-    "research.html": page("research", "Research interests", research_content),
     "publications.html": page("publications", "Publications & Achievements", pub_content),
-    "teaching.html": page("teaching", "Teaching", teaching_content),
-    "education.html": page("education", "Education", education_content),
     "activities.html": page("activities", "Activities", activities_content, extra_class="activities-page"),
 }
 

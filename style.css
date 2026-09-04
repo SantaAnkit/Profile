@@ -100,12 +100,22 @@ a:focus-visible {
   background: var(--card-bg);
   color: var(--ink-soft);
 }
-.icon-btn svg { width: 17px; height: 17px; }
+.icon-btn svg { width: 17px; height: 17px; flex-shrink: 0; }
 .icon-btn:hover, .icon-btn:focus-visible {
   background: var(--forest);
   border-color: var(--forest);
   color: #fff;
 }
+
+.icon-btn-label {
+  width: auto;
+  border-radius: 18px;
+  padding: 0 14px 0 10px;
+  gap: 6px;
+  font-size: 0.86rem;
+  font-weight: 500;
+}
+.icon-btn-label span { line-height: 1; }
 
 .section-nav {
   display: flex;
@@ -163,27 +173,6 @@ h2 {
   padding: 7px 14px;
   border-radius: 3px;
   color: var(--ink-soft);
-}
-
-/* ===================== HERO / COVER COLLAGE ===================== */
-
-.hero {
-  margin-bottom: 44px;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-}
-.hero-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 3px;
-  height: 220px;
-}
-.hero-grid img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
 }
 
 /* ===================== PUBLICATIONS ===================== */
@@ -268,8 +257,6 @@ h2 {
   .section-nav { flex-direction: row; flex-wrap: wrap; gap: 14px; }
   .section-nav a { padding-left: 0; border-left: none; border-bottom: 2px solid transparent; }
   .section-nav a.active { border-left: none; border-bottom-color: var(--ochre); }
-  .hero-grid { grid-template-columns: repeat(2, 1fr); height: auto; }
-  .hero-grid img { height: 140px; }
   .gallery { grid-template-columns: repeat(2, 1fr); }
   .gallery-item.span-2 { grid-column: span 2; }
 }
